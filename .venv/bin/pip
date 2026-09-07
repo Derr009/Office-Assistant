@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/nineleaps/Desktop/Office Assistant/.venv/bin/python3.12" "$0" "$@"
+'''exec' "/Users/nineleaps/Desktop/Office Assistant/.venv/bin/python3" "$0" "$@"
 ' '''
 import sys
 from pip._internal.cli.main import main
