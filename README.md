@@ -37,6 +37,31 @@ ollama pull nomic-embed-text
 ollama pull qwen2.5:1.5b
 ```
 
+## Database connection
+
+The backend loads `DATABASE_URL` from `.env` using `python-dotenv` and creates a SQLAlchemy connection engine. Configure it with the PostgreSQL driver format used by this project:
+
+```env
+DATABASE_URL=postgresql+psycopg://username:password@localhost:5432/database_name
+```
+
+Employee-specific questions use the `employee_id` sent in the `/ask` request. The assistant looks up the employee by joining these tables:
+
+- `Employee`: must include `employee_id`, `name`, `department`, `designation`, and `location`.
+- `LeaveBalance`: must include `employee_id`, `casual_leave`, `earned_leave`, and `sick_leave`.
+
+The lookup joins `Employee.employee_id` to `LeaveBalance.employee_id`. If the ID is missing, the assistant asks for it; if no matching record exists, it returns `Employee not found.`
+
+Example employee-specific request:
+
+```bash
+curl -X POST http://127.0.0.1:8000/ask \
+	-H "Content-Type: application/json" \
+	-d '{"question":"How many leaves do I have?","employee_id":"EMP001"}'
+```
+
+The browser frontend sends the optional Employee ID field along with every question. Policy-only questions can omit the ID, while employee questions and combined policy-plus-employee questions require it.
+
 ## Build the knowledge base
 
 Place policy PDFs in `data/knowledge`, then run ingestion from the project root:
