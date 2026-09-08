@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DT Office Assistant for employee policy questions">
+  <title>DT Office Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-mark" aria-hidden="true">DT</div>
+      <div class="brand-copy">
+        <span class="eyebrow">People operations</span>
+        <h1>Office Assistant</h1>
+      </div>
+      <div class="sidebar-rule"></div>
+      <div class="sidebar-note">
+        <span class="status-dot"></span>
+        <div>
+          <strong>Policy desk online</strong>
+          <p>Ask about leave, travel, expenses, security, or working from home.</p>
+        </div>
+      </div>
+      <div class="sidebar-footer">DT internal tools <span>v0.1</span></div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Employee support</span>
+          <h2>How can I help today?</h2>
+        </div>
+        <label class="employee-field" for="employee-id">
+          <span>Employee ID</span>
+          <input id="employee-id" type="text" placeholder="Optional" autocomplete="off">
+        </label>
+      </header>
+
+      <div class="chat-layout">
+        <section class="chat-panel" aria-label="Assistant conversation">
+          <div id="messages" class="messages" aria-live="polite">
+            <article class="message assistant-message">
+              <div class="avatar">DT</div>
+              <div class="message-body">
+                <span class="message-label">DT Assistant</span>
+                <p>Hi there. I can help you find answers in the company policies, or look up your current leave balance.</p>
+                <time>Just now</time>
+              </div>
+            </article>
+          </div>
+
+          <div class="composer-wrap">
+            <div class="suggestions" aria-label="Suggested questions">
+              <button type="button" data-question="What is the leave policy?">Leave policy</button>
+              <button type="button" data-question="What is the work from home policy?">Work from home</button>
+              <button type="button" data-question="How many leaves do I have?">My leave balance</button>
+            </div>
+            <form id="ask-form" class="composer">
+              <textarea id="question" rows="1" placeholder="Ask a policy question..." aria-label="Your question" required></textarea>
+              <button class="send-button" type="submit" aria-label="Send question" title="Send question">
+                <span>Send</span>
+                <span aria-hidden="true">&#8599;</span>
+              </button>
+            </form>
+            <p class="composer-hint">Answers are based on the documents in the DT policy library.</p>
+          </div>
+        </section>
+
+        <aside class="help-panel">
+          <div class="panel-heading">
+            <span class="panel-kicker">Quick start</span>
+            <h3>Useful things to ask</h3>
+          </div>
+          <ul>
+            <li><span>01</span><button type="button" data-question="What is the travel expense policy?">Travel and expense claims</button></li>
+            <li><span>02</span><button type="button" data-question="What is the IT information security policy?">Information security</button></li>
+            <li><span>03</span><button type="button" data-question="Show me my laptop details">My employee details</button></li>
+          </ul>
+          <div class="policy-count"><strong>05</strong><span>policy documents<br>in the knowledge base</span></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
